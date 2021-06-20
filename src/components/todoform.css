@@ -1,0 +1,20 @@
+.form {
+	margin-top: 100px;
+	margin-bottom: 50px;
+}
+
+.form__input {
+	width: 400px;
+	padding: 10px;
+	border-radius: 15px;
+	outline: none;
+}
+.form__button {
+	width: 100px;
+	padding: 10px;
+	margin: 10px;
+	border-radius: 15px;
+	border: 2px solid rgb(97, 97, 97);
+	outline: none;
+	font-size: 16px;
+}
