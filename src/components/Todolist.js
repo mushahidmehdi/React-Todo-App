@@ -1,11 +1,14 @@
-import React from 'react';
-import Todo from './Todo';
+import React from 'react'
+import Todo from './Todo'
 
-function Todolist({ todos, toggleComplete, removeTodo }) {
-
+function Todolist( { todos, toggleButton, deleteTodo}) {
 	return (
-	<ul>{todos.map(todo => (<Todo key={todo.id} todo={todo} toggleComplete={toggleComplete} removeTodo={removeTodo}/> ))}</ul>
-	);
+		<ul>
+			{todos.map(todo => (
+				<Todo key={todo.id} todo={todo} toggleButton={toggleButton} deleteTodo={deleteTodo}/>
+			))}
+		</ul>
+	)
 }
 
 export default Todolist

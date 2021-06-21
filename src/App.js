@@ -4,45 +4,49 @@ import Todoform from './components/Todoform'
 import Todolist from './components/Todolist';
 
 function App() {
-
-  const  SET_LOCAL_STOREAGE = 'SET_LOCAL_STOREAGE';
+  const SET_LOCAL_STORAGE = 'SET-LOCAL-STORAGE'
   const [todos, setTodos] = useState([])
 
+
   useEffect(() => {
-    const getTodos = JSON.parse(localStorage.getItem(SET_LOCAL_STOREAGE))
-    if (getTodos){
-      setTodos(getTodos)
+    const localTodos = JSON.parse(localStorage.getItem(SET_LOCAL_STORAGE))
+    if (localTodos){
+      setTodos(localTodos) 
     }
   }, [])
 
   useEffect(() => {
-    localStorage.setItem(SET_LOCAL_STOREAGE, JSON.stringify(todos))
+    localStorage.setItem(SET_LOCAL_STORAGE, JSON.stringify(todos))
   },[todos])
 
-  function addTask (todo){
+
+  const addTask = (todo) => {
     setTodos([...todos, todo])
   }
 
-  function toggleComplete(id){
-    setTodos(
-      todos.map(todo => {
-        if (todo.id === id){
-          return {
-            ...todo,
-            completed: !todo.completed
-          }}
-        return todo;
-      }))
-  }
+ function toggleButton (id){
+   setTodos( 
+     todos.map(todo => {
+    if ( todo.id === id ){
+      return {
+        ...todo, completed: !todo.completed
+      }
+    }
+    return todo
+   }))
+ }
 
-  function removeTodo (id) {
-    setTodos(todos.filter(todo => todo.id !== id ))
-  }
+ function deleteTodo (id){
+   setTodos(todos.filter(todo => todo.id !== id ));
+ }
 
   return (
     <div className="App">
       <Todoform addTask={addTask}/>
-      <Todolist todos={todos} toggleComplete={toggleComplete} removeTodo={removeTodo}/>
+      <Todolist todos={todos}
+      toggleButton={toggleButton} 
+      deleteTodo={deleteTodo}
+      />
     </div>
   );
 }
